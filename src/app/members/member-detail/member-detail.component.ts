@@ -24,8 +24,8 @@ export class MemberDetailComponent implements OnInit {
 
     this.galleryOptions = [
       {
-        width: '500 px',
-        height: '500 px',
+        width: '500px',
+        height: '500px',
         imagePercent: 100,
         thumbnailsColumns: 4,
         imageAnimation: NgxGalleryAnimation.Slide,
@@ -34,11 +34,13 @@ export class MemberDetailComponent implements OnInit {
 
     ];
     this.galleryImages=this.getImages();
+
   }
 
   getImages(){
     const imageUrls=[];
     for (let i = 0; i < this.user.photos.length; i++) {
+
       imageUrls.push({
         small: this.user.photos[i].url,
         medium: this.user.photos[i].url,
