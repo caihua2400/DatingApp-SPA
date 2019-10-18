@@ -3,17 +3,28 @@ import {HttpClient} from '@angular/common/http';
 import {map, MapOperator} from 'rxjs/internal/operators/map';
 import {AlertifyService} from './alertify.service';
 import {JwtHelperService} from '@auth0/angular-jwt';
+import {environment} from '../../environments/environment';
+import {User} from '../_models/user';
+import {BehaviorSubject, Observable} from 'rxjs';
 
 
 @Injectable(
 
 )
 export class AuthService{
-  baseUrl='http://localhost:5000/api/auth/';
+  baseUrl=environment.apiUrl+'auth/';
   jwtHelper=new JwtHelperService();
   decodedToken: any;
+  currentUser : User;
+  photoUrl=new BehaviorSubject<string>("../../assets/user.png");
+  currentPhotoUrl= this.photoUrl.asObservable();
+
  constructor(private Http: HttpClient,private alertify: AlertifyService){
 
+ }
+
+ changeMemberPhoto(photoUrl : string){
+     this.photoUrl.next(photoUrl);
  }
 
  login(model : any){
@@ -21,16 +32,18 @@ export class AuthService{
      map((response : any)=>{
         const user=response;
         if(user){
+          localStorage.setItem('user',JSON.stringify(user.user));
           localStorage.setItem('token',user.token);
           this.decodedToken=this.jwtHelper.decodeToken(user.token);
-          console.log(this.decodedToken);
+          this.currentUser=user.user;
+          this.changeMemberPhoto(this.currentUser.photoUrl);
         }
      })
    );
  }
 
- register(model : any){
-    return this.Http.post(this.baseUrl+'register',model);
+ register(user : User){
+    return this.Http.post(this.baseUrl+'register',user);
  }
 
  loggedIn(){
