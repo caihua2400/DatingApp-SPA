@@ -21,7 +21,7 @@ import {UserService} from './_services/user.service';
 import { MemberCardComponent } from './members/member-card/member-card.component';
 import {JwtModule} from '@auth0/angular-jwt';
 import { MemberDetailComponent } from './members/member-detail/member-detail.component';
-import {BsDatepickerModule, TabsModule} from 'ngx-bootstrap';
+import {BsDatepickerModule, PaginationModule, TabsModule} from 'ngx-bootstrap';
 import {MemberDetailResolver} from './_resolvers/member-detail.resolver';
 import {MemberListResolver} from './_resolvers/member-list.resolver';
 import { NgxGalleryModule } from 'ngx-gallery';
@@ -31,6 +31,7 @@ import {PreventUnsavedChangesGuard} from './_guards/prevent-unsaved-changes.guar
 import { PhotoEditorComponent } from './members/photo-editor/photo-editor.component';
 import {FileUploadModule} from 'ng2-file-upload';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+
 
 
 export function getToken(){
@@ -43,6 +44,8 @@ export class CustomHammerConfig extends HammerGestureConfig  {
     rotate: { enable: false }
   };
 }
+
+
 
 @NgModule({
    declarations: [
@@ -58,6 +61,8 @@ export class CustomHammerConfig extends HammerGestureConfig  {
       MemberDetailComponent,
       MemberEditComponent,
       PhotoEditorComponent
+
+
    ],
    imports: [
       BrowserModule,
@@ -65,6 +70,7 @@ export class CustomHammerConfig extends HammerGestureConfig  {
       BsDatepickerModule.forRoot(),
       HttpClientModule,
       FormsModule,
+      PaginationModule.forRoot(),
       BsDropdownModule.forRoot(),
       RouterModule.forRoot(appRoutes),
       JwtModule.forRoot({
