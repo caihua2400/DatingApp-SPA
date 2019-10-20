@@ -31,6 +31,7 @@ import {PreventUnsavedChangesGuard} from './_guards/prevent-unsaved-changes.guar
 import { PhotoEditorComponent } from './members/photo-editor/photo-editor.component';
 import {FileUploadModule} from 'ng2-file-upload';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import { ButtonsModule } from 'ngx-bootstrap';
 
 
 
@@ -70,6 +71,7 @@ export class CustomHammerConfig extends HammerGestureConfig  {
       BsDatepickerModule.forRoot(),
       HttpClientModule,
       FormsModule,
+      ButtonsModule.forRoot(),
       PaginationModule.forRoot(),
       BsDropdownModule.forRoot(),
       RouterModule.forRoot(appRoutes),
