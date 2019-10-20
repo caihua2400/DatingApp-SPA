@@ -32,6 +32,7 @@ import { PhotoEditorComponent } from './members/photo-editor/photo-editor.compon
 import {FileUploadModule} from 'ng2-file-upload';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { ButtonsModule } from 'ngx-bootstrap';
+import {ListsResolver} from './_resolvers/lists.resolver';
 
 
 
@@ -90,6 +91,7 @@ export class CustomHammerConfig extends HammerGestureConfig  {
    ],
    providers: [AuthService,AlertifyService,ErrorInterceptorProvider,UserService,MemberDetailResolver,
      MemberListResolver,
+     ListsResolver,
      { provide: HAMMER_GESTURE_CONFIG, useClass: CustomHammerConfig },
      MemberEditResolver,
      PreventUnsavedChangesGuard
